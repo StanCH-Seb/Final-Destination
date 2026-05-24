@@ -1,10 +1,10 @@
-public class GameEngine {
+public class GameEngine{
 
     private Scene[] scenes;
     private String playerName;
     private int deathCount;
 
-    public GameEngine(String playerName) {
+    public GameEngine(String playerName){
         this.playerName = playerName;
         this.scenes     = StoryBuilder.buildScenes(playerName);
     }

@@ -1,4 +1,3 @@
-package game;
 public class StoryScene extends Scene {
 
     public StoryScene(String id, String narrative) {
@@ -19,10 +18,5 @@ public class StoryScene extends Scene {
     @Override
     public boolean isEnding(){
          return false;
-    }
-
-    @Override
-    public void displayScene() {
-        // implement display logic for story scenes
     }
 }
