@@ -1,5 +1,4 @@
 package game;
-
 public class StoryBuilder {
 
     public static Scene[] buildScenes(String playerName) {
@@ -24,6 +23,7 @@ public class StoryBuilder {
 
         
         StoryScene s2 = new StoryScene("SCENE_2", StoryLines.SCENE_2(playerName));
+        s2.setHint("SomeHint");
         s2.addChoice(new Choice("A", "Feed dogs", "DEATH_DOG_BITE"));
         s2.addChoice(new Choice("B", "Defend yourself", "SCENE_3"));
         scenes[i++] = s2;
@@ -33,6 +33,7 @@ public class StoryBuilder {
 
        
         StoryScene s3 = new StoryScene("SCENE_3", StoryLines.SCENE_3(playerName));
+        s3.setHint("SomeHint");
         s3.addChoice(new Choice("A", "Trust man",  "SCENE_4"));
         s3.addChoice(new Choice("B", "Alley",      "DEATH_ALLEY_KNIFE"));
         s3.addChoice(new Choice("C", "Wait",       "DEATH_DOGS_RETURN"));
@@ -50,6 +51,7 @@ public class StoryBuilder {
 
         
         StoryScene s4 = new StoryScene("SCENE_4", StoryLines.SCENE_4(playerName));
+        s4.setHint("SomeHint");
         s4.addChoice(new Choice("A", "Run",      "DEATH_SLIP"));
         s4.addChoice(new Choice("B", "Shout",    "DEATH_SHOUT"));
         s4.addChoice(new Choice("C", "Climb",    "DEATH_GATE"));
@@ -67,6 +69,7 @@ public class StoryBuilder {
 
        
         StoryScene s5 = new StoryScene("SCENE_5", StoryLines.SCENE_5(playerName));
+        s5.setHint("SomeHint");
         s5.addChoice(new Choice("A", "Run home",        "DEATH_SPEEDING_CAR"));
         s5.addChoice(new Choice("B", "Walk carefully",  "SCENE_6"));
         scenes[i++] = s5;
@@ -76,6 +79,7 @@ public class StoryBuilder {
 
       
         StoryScene s6 = new StoryScene("SCENE_6", StoryLines.SCENE_6(playerName));
+        s6.setHint("SomeHint");
         s6.addChoice(new Choice("A", "Choose A", "MENU"));
         s6.addChoice(new Choice("B", "Choose B", "ENDING_EXPLOSION"));
         scenes[i++] = s6;

@@ -1,9 +1,9 @@
 package game;
 
 public class Choice {
-    private String label;
-    private String text;
-    private String nextSceneId;
+    private final String label;
+    private final String nextSceneId;
+    private final String text;
     
     public Choice(String label, String text, String nextSceneId) {
         this.label = label;

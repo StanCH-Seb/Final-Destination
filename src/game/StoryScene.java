@@ -20,4 +20,9 @@ public class StoryScene extends Scene {
     public boolean isEnding(){
          return false;
     }
+
+    @Override
+    public void displayScene() {
+        // implement display logic for story scenes
+    }
 }
