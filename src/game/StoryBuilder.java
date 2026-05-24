@@ -1,3 +1,4 @@
+package game;
 public class StoryBuilder {
 
     public static Scene[] buildScenes(String playerName) {
