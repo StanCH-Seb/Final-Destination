@@ -1,3 +1,5 @@
+package game.logic;
+
 import java.io.FileWriter;
 import java.io.File;
 import java.util.Scanner;

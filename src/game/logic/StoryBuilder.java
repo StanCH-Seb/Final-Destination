@@ -1,3 +1,5 @@
+package game.logic;
+
 public class StoryBuilder {
 
     public static Scene[] buildScenes(String playerName) {

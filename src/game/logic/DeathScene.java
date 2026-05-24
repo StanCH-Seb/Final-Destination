@@ -1,4 +1,6 @@
-public class DeathScene extends Scene{
+package game.logic;
+
+public class DeathScene extends Scene {
 
     public DeathScene(String id, String narrative){
         super(id, narrative);

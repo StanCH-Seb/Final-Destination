@@ -1,3 +1,5 @@
+package game.logic;
+
 import java.util.ArrayList;
 public abstract class Scene {
 

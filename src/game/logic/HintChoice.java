@@ -1,4 +1,6 @@
-public class HintChoice{ 
+package game.logic;
+
+public class HintChoice{
 
     public static String getHint(String sceneId){ 
 
@@ -39,7 +41,7 @@ public class HintChoice{
 
 
 
-    public static Choice[] getChoices(String sceneId){ 
+    public static Choice[] getChoices(String sceneId){
 
 
 

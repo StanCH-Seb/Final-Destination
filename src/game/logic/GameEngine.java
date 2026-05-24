@@ -1,4 +1,7 @@
-import ui.Display;
+package game.logic;
+
+
+import game.ui.Display;
 
 public class GameEngine{
 

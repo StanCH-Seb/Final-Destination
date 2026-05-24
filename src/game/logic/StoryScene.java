@@ -1,3 +1,5 @@
+package game.logic;
+
 public class StoryScene extends Scene {
 
     public StoryScene(String id, String narrative) {

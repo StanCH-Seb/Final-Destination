@@ -1,4 +1,6 @@
-public class EndingScene extends Scene{
+package game.logic;
+
+public class EndingScene extends Scene {
 
     public EndingScene(String id, String narrative) {
         super(id, narrative);

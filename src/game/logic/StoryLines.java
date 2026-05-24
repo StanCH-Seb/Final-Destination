@@ -1,3 +1,5 @@
+package game.logic;
+
 public class StoryLines {
  
     // ── PREAMBLE ─────────────────────────────────────────────────────
