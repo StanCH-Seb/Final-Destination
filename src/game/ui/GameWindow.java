@@ -9,7 +9,7 @@ import java.util.List;
 
 public class GameWindow extends JFrame {
 
-    // ── Colors ─────────────────────────────────────────────────────────
+    
     private static final Color BG_DARK      = new Color(10, 8, 12);
     private static final Color BG_PANEL     = new Color(18, 14, 22);
     private static final Color BG_TEXT      = new Color(24, 19, 30);
@@ -24,14 +24,14 @@ public class GameWindow extends JFrame {
     private static final Color DEATH_RED    = new Color(160, 20, 30);
     private static final Color ENDING_GOLD  = new Color(180, 150, 60);
 
-    // ── Fonts ───────────────────────────────────────────────────────────
+   
     private Font fontTitle;
     private Font fontBody;
     private Font fontBtn;
     private Font fontMono;
     private Font fontSmall;
 
-    // ── State ───────────────────────────────────────────────────────────
+   
     private String playerName = "Player";
     private Scene[] scenes;
     private String currentSceneId = "MENU";
@@ -41,28 +41,29 @@ public class GameWindow extends JFrame {
     private String typewriterText = "";
     private boolean typewriterDone = false;
 
-    // ── UI Components ───────────────────────────────────────────────────
+    
+    private MouseAdapter narrativeSkipListener;
+
+    
     private JPanel mainPanel;
     private CardLayout cardLayout;
 
-    // Menu screen
+   
     private JPanel menuScreen;
 
-    // Name screen
+  
     private JPanel nameScreen;
     private JTextField nameField;
 
-    // Game screen
+    
     private JPanel gameScreen;
     private JLabel sceneTypeLabel;
     private JTextArea narrativeArea;
     private JPanel choicesPanel;
     private JButton hintButton;
     private JLabel hintLabel;
-    private JPanel deathOverlay;
-    private JPanel endingOverlay;
 
-    // Log screen
+    
     private JPanel logScreen;
     private JTextArea logArea;
 
@@ -77,7 +78,7 @@ public class GameWindow extends JFrame {
         setVisible(true);
     }
 
-    // ── Font loading ────────────────────────────────────────────────────
+    
     private void loadFonts() {
         try {
             fontTitle = new Font("Georgia", Font.BOLD, 32);
@@ -94,7 +95,7 @@ public class GameWindow extends JFrame {
         }
     }
 
-    // ── Frame setup ─────────────────────────────────────────────────────
+    
     private void initFrame() {
         setTitle("Final Destination");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,9 +114,7 @@ public class GameWindow extends JFrame {
         cardLayout.show(mainPanel, name);
     }
 
-    // ════════════════════════════════════════════════════════════════════
-    // MENU SCREEN
-    // ════════════════════════════════════════════════════════════════════
+   
     private void buildMenuScreen() {
         menuScreen = new JPanel(new GridBagLayout()) {
             @Override protected void paintComponent(Graphics g) {
@@ -129,7 +128,6 @@ public class GameWindow extends JFrame {
         inner.setLayout(new BoxLayout(inner, BoxLayout.Y_AXIS));
         inner.setOpaque(false);
 
-        // Title
         JLabel skull = makeLabel("☠", new Font("Dialog", Font.PLAIN, 56), ACCENT_RED);
         skull.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -143,9 +141,9 @@ public class GameWindow extends JFrame {
         sep.setForeground(ACCENT_DIM);
         sep.setMaximumSize(new Dimension(300, 2));
 
-        JButton startBtn  = makeMenuButton("A  ·  START GAME");
-        JButton logBtn    = makeMenuButton("B  ·  VIEW PAST SESSIONS");
-        JButton quitBtn   = makeMenuButton("C  ·  QUIT");
+        JButton startBtn = makeMenuButton("A  ·  START GAME");
+        JButton logBtn   = makeMenuButton("B  ·  VIEW PAST SESSIONS");
+        JButton quitBtn  = makeMenuButton("C  ·  QUIT");
 
         startBtn.addActionListener(e -> showScreen("NAME"));
         logBtn.addActionListener(e -> {
@@ -174,9 +172,7 @@ public class GameWindow extends JFrame {
         mainPanel.add(menuScreen, "MENU");
     }
 
-    // ════════════════════════════════════════════════════════════════════
-    // NAME SCREEN
-    // ════════════════════════════════════════════════════════════════════
+    
     private void buildNameScreen() {
         nameScreen = new JPanel(new GridBagLayout()) {
             @Override protected void paintComponent(Graphics g) {
@@ -241,14 +237,12 @@ public class GameWindow extends JFrame {
         mainPanel.add(nameScreen, "NAME");
     }
 
-    // ════════════════════════════════════════════════════════════════════
-    // GAME SCREEN
-    // ════════════════════════════════════════════════════════════════════
+   
     private void buildGameScreen() {
         gameScreen = new JPanel(new BorderLayout(0, 0));
         gameScreen.setBackground(BG_DARK);
 
-        // ── Top bar ──
+        
         JPanel topBar = new JPanel(new BorderLayout());
         topBar.setBackground(BG_DARK);
         topBar.setBorder(BorderFactory.createEmptyBorder(12, 20, 8, 20));
@@ -257,19 +251,18 @@ public class GameWindow extends JFrame {
         JLabel gameTitle = makeLabel("FINAL DESTINATION", new Font("Courier New", Font.BOLD, 12), ACCENT_RED);
 
         topBar.add(sceneTypeLabel, BorderLayout.WEST);
-        topBar.add(gameTitle, BorderLayout.EAST);
+        topBar.add(gameTitle,      BorderLayout.EAST);
 
-        // thin red line
         JPanel redLine = new JPanel();
         redLine.setBackground(ACCENT_DIM);
         redLine.setPreferredSize(new Dimension(0, 1));
 
         JPanel topSection = new JPanel(new BorderLayout());
         topSection.setBackground(BG_DARK);
-        topSection.add(topBar, BorderLayout.CENTER);
+        topSection.add(topBar,  BorderLayout.CENTER);
         topSection.add(redLine, BorderLayout.SOUTH);
 
-        // ── Narrative area ──
+      
         narrativeArea = new JTextArea();
         narrativeArea.setFont(fontBody);
         narrativeArea.setForeground(TEXT_MAIN);
@@ -286,15 +279,15 @@ public class GameWindow extends JFrame {
         scrollPane.getViewport().setBackground(BG_DARK);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        // Style scrollbar
         scrollPane.getVerticalScrollBar().setBackground(BG_DARK);
         scrollPane.getVerticalScrollBar().setUI(new javax.swing.plaf.basic.BasicScrollBarUI() {
             @Override protected void configureScrollBarColors() {
-                thumbColor = BTN_BORDER; trackColor = BG_DARK;
+                thumbColor = BTN_BORDER;
+                trackColor = BG_DARK;
             }
         });
 
-        // ── Bottom panel (hint + choices) ──
+       
         JPanel bottomPanel = new JPanel(new BorderLayout(0, 0));
         bottomPanel.setBackground(BG_PANEL);
         bottomPanel.setBorder(BorderFactory.createCompoundBorder(
@@ -302,23 +295,20 @@ public class GameWindow extends JFrame {
                 BorderFactory.createEmptyBorder(14, 20, 16, 20)
         ));
 
-        // hint row
         JPanel hintRow = new JPanel(new BorderLayout(10, 0));
         hintRow.setOpaque(false);
         hintButton = makeSmallLink("💡 Hint");
         hintLabel  = makeLabel("", fontSmall, TEXT_HINT);
         hintLabel.setFont(new Font("Georgia", Font.ITALIC, 13));
         hintRow.add(hintButton, BorderLayout.WEST);
-        hintRow.add(hintLabel, BorderLayout.CENTER);
+        hintRow.add(hintLabel,  BorderLayout.CENTER);
 
-        // choices panel
         choicesPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 6));
         choicesPanel.setOpaque(false);
 
         bottomPanel.add(hintRow,      BorderLayout.NORTH);
         bottomPanel.add(choicesPanel, BorderLayout.CENTER);
 
-        // Assemble
         gameScreen.add(topSection,  BorderLayout.NORTH);
         gameScreen.add(scrollPane,  BorderLayout.CENTER);
         gameScreen.add(bottomPanel, BorderLayout.SOUTH);
@@ -326,9 +316,7 @@ public class GameWindow extends JFrame {
         mainPanel.add(gameScreen, "GAME");
     }
 
-    // ════════════════════════════════════════════════════════════════════
-    // LOG SCREEN
-    // ════════════════════════════════════════════════════════════════════
+  
     private void buildLogScreen() {
         logScreen = new JPanel(new BorderLayout());
         logScreen.setBackground(BG_DARK);
@@ -360,16 +348,12 @@ public class GameWindow extends JFrame {
         sp.setBackground(BG_DARK);
         sp.getViewport().setBackground(BG_DARK);
 
-        logScreen.add(header,  BorderLayout.NORTH);
-        logScreen.add(divider, BorderLayout.CENTER);
-        logScreen.add(sp,      BorderLayout.CENTER);
-
-        // fix layout — header north, divider+sp center
-        logScreen.remove(divider);
         JPanel content = new JPanel(new BorderLayout());
         content.setBackground(BG_DARK);
         content.add(divider, BorderLayout.NORTH);
-        content.add(sp, BorderLayout.CENTER);
+        content.add(sp,      BorderLayout.CENTER);
+
+        logScreen.add(header,  BorderLayout.NORTH);
         logScreen.add(content, BorderLayout.CENTER);
 
         mainPanel.add(logScreen, "LOG");
@@ -395,9 +379,7 @@ public class GameWindow extends JFrame {
         logArea.setCaretPosition(0);
     }
 
-    // ════════════════════════════════════════════════════════════════════
-    // GAME LOGIC
-    // ════════════════════════════════════════════════════════════════════
+    
     private void startNewGame() {
         scenes     = StoryBuilder.buildScenes(playerName);
         deathCount = 0;
@@ -423,21 +405,20 @@ public class GameWindow extends JFrame {
 
         currentSceneId = id;
 
-        // Update top label
         String type = scene.getSceneType();
-        Color labelColor = type.equals("DEATH") ? DEATH_RED
-                : type.equals("ENDING") ? ENDING_GOLD
-                : TEXT_DIM;
+        Color labelColor = type.equals("DEATH")  ? DEATH_RED
+                         : type.equals("ENDING") ? ENDING_GOLD
+                         : TEXT_DIM;
         sceneTypeLabel.setText("[" + type + "]");
         sceneTypeLabel.setForeground(labelColor);
         narrativeArea.setForeground(type.equals("DEATH") ? new Color(210, 170, 165) : TEXT_MAIN);
 
-        // Clear choices & hint
         choicesPanel.removeAll();
+        choicesPanel.revalidate();
+        choicesPanel.repaint();
         hintLabel.setText("");
         hintButton.setVisible(false);
 
-        // Typewrite narrative
         startTypewriter(scene.getNarrative(), () -> {
             if (scene.isGameOver()) {
                 deathCount++;
@@ -463,10 +444,9 @@ public class GameWindow extends JFrame {
             choicesPanel.add(btn);
         }
 
+       
         if (scene.getHint() != null && !scene.getHint().isEmpty()) {
             hintButton.setVisible(true);
-            hintButton.addActionListener(null);
-            // remove old listeners first
             for (ActionListener al : hintButton.getActionListeners())
                 hintButton.removeActionListener(al);
             String hint = scene.getHint();
@@ -501,7 +481,7 @@ public class GameWindow extends JFrame {
         choicesPanel.repaint();
     }
 
-    // ── Typewriter effect ────────────────────────────────────────────────
+   
     private void startTypewriter(String text, Runnable onDone) {
         if (typewriterTimer != null && typewriterTimer.isRunning()) {
             typewriterTimer.stop();
@@ -511,12 +491,16 @@ public class GameWindow extends JFrame {
         narrativeArea.setText("");
         typewriterDone  = false;
 
+       
+        if (narrativeSkipListener != null) {
+            narrativeArea.removeMouseListener(narrativeSkipListener);
+        }
+
         typewriterTimer = new javax.swing.Timer(18, null);
         typewriterTimer.addActionListener(e -> {
             if (typewriterIndex < typewriterText.length()) {
                 narrativeArea.append(String.valueOf(typewriterText.charAt(typewriterIndex)));
                 typewriterIndex++;
-                // scroll to bottom
                 narrativeArea.setCaretPosition(narrativeArea.getDocument().getLength());
             } else {
                 typewriterTimer.stop();
@@ -526,8 +510,7 @@ public class GameWindow extends JFrame {
         });
         typewriterTimer.start();
 
-        // click to skip typewriter
-        narrativeArea.addMouseListener(new MouseAdapter() {
+        narrativeSkipListener = new MouseAdapter() {
             @Override public void mouseClicked(MouseEvent e) {
                 if (!typewriterDone && typewriterTimer.isRunning()) {
                     typewriterTimer.stop();
@@ -537,12 +520,11 @@ public class GameWindow extends JFrame {
                     if (onDone != null) SwingUtilities.invokeLater(onDone);
                 }
             }
-        });
+        };
+        narrativeArea.addMouseListener(narrativeSkipListener);
     }
 
-    // ════════════════════════════════════════════════════════════════════
-    // HELPERS — Widget builders
-    // ════════════════════════════════════════════════════════════════════
+    
     private JLabel makeLabel(String text, Font font, Color color) {
         JLabel l = new JLabel(text);
         l.setFont(font);
@@ -589,14 +571,13 @@ public class GameWindow extends JFrame {
             @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                Color bg = hovered ? new Color(60, 40, 70) : new Color(30, 22, 38);
-                Color border = hovered ? ACCENT_RED : BTN_BORDER;
+                Color bg     = hovered ? new Color(60, 40, 70)  : new Color(30, 22, 38);
+                Color border = hovered ? ACCENT_RED             : BTN_BORDER;
                 g2.setColor(bg);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 8, 8);
                 g2.setColor(border);
                 g2.setStroke(new BasicStroke(1.2f));
                 g2.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 8, 8);
-                // label box
                 g2.setColor(hovered ? ACCENT_RED : ACCENT_DIM);
                 g2.fillRoundRect(8, getHeight()/2-11, 26, 22, 4, 4);
                 g2.setFont(new Font("Courier New", Font.BOLD, 12));
@@ -605,7 +586,6 @@ public class GameWindow extends JFrame {
                 int lx = 8 + (26 - fm.stringWidth(label)) / 2;
                 int ly = getHeight()/2 + fm.getAscent()/2 - 2;
                 g2.drawString(label, lx, ly);
-                // text
                 g2.setFont(new Font("Georgia", Font.PLAIN, 13));
                 g2.setColor(hovered ? TEXT_MAIN : new Color(190, 180, 175));
                 g2.drawString(text, 42, getHeight()/2 + g2.getFontMetrics().getAscent()/2 - 2);
@@ -639,20 +619,17 @@ public class GameWindow extends JFrame {
         return btn;
     }
 
-    // ── Background atmosphere ────────────────────────────────────────────
+    
     private void paintAtmosphere(Graphics g, int w, int h) {
         Graphics2D g2 = (Graphics2D) g.create();
-        // base
         g2.setColor(BG_DARK);
         g2.fillRect(0, 0, w, h);
-        // subtle radial vignette from top
         GradientPaint gp = new GradientPaint(
                 w/2f, 0, new Color(60, 10, 15, 60),
                 w/2f, h, new Color(0, 0, 0, 0)
         );
         g2.setPaint(gp);
         g2.fillRect(0, 0, w, h);
-        // faint horizontal lines
         g2.setColor(new Color(255, 255, 255, 4));
         for (int y = 0; y < h; y += 4) g2.drawLine(0, y, w, y);
         g2.dispose();

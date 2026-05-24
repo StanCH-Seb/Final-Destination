@@ -2,7 +2,7 @@ package game.logic;
 
 public class StoryLines {
  
-    // ── PREAMBLE ─────────────────────────────────────────────────────
+    
     public static String PREAMBLE(String playerName) {
         return
         ">> Death comes marching to everyone, in different pace and time but one\n" +
@@ -34,7 +34,7 @@ public class StoryLines {
         "─────────────────────────────────────────────────────────────────────────────";
     }
  
-    // ── SCENE 1 ──────────────────────────────────────────────────────
+   
     public static String SCENE_1(String playerName) {
         return
         "When " + playerName + " walked out of the company they so \"loved\", they felt the\n" +
@@ -48,7 +48,7 @@ public class StoryLines {
         "Which path should they go?";
     }
  
-    // ── DEATH AC ─────────────────────────────────────────────────────
+    
     public static String DEATH_AC_FALL(String playerName) {
         return
         playerName + " shrugged the feeling off and continued walking.\n\n" +

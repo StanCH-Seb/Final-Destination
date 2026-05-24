@@ -11,7 +11,7 @@ public class GameEngine{
 
     public GameEngine(String playerName){
         this.playerName = playerName;
-        this.scenes     = StoryBuilder.buildScenes(playerName);
+        this.scenes = StoryBuilder.buildScenes(playerName);
     }
 
     public void run() {
@@ -36,16 +36,16 @@ public class GameEngine{
         }
     }
 
-    private void startGame() {
+    private void startGame(){
         String current = "PREAMBLE";
         deathCount = 0;
 
-        while (true) {
+        while (true){
 
             Scene scene;
             try {
                 scene = getScene(current);
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e){
                 System.out.println("Internal error: " + e.getMessage());
                 return;
             }
@@ -60,12 +60,12 @@ public class GameEngine{
             System.out.println("[" + scene.getSceneType() + "]");
             Display.printSlowly(scene.getNarrative());
 
-            if (scene.isGameOver()) {
+            if (scene.isGameOver()){
                 gameOver();
                 return;
             }
 
-            if (scene.isEnding()) {
+            if (scene.isEnding()){
                 GameLogger.logSession(playerName, deathCount, "SURVIVED");
                 Display.ask("\nPress ENTER to continue...");
                 return;
@@ -74,36 +74,36 @@ public class GameEngine{
             System.out.println();
             Choice[] choices = scene.getChoices().toArray(new Choice[0]);
 
-            for (Choice choice : choices) {
+            for (Choice choice : choices){
                 System.out.println(choice.getLabel() + ". " + choice.getText());
             }
 
-            if (scene.getHint() != null) {
+            if (scene.getHint() != null){
                 System.out.println("H. Hint");
             }
 
             String nextScene = null;
-            while (nextScene == null) {
+            while (nextScene == null){
 
                 try {
                     String input = Display.ask("\nChoice: ").toUpperCase();
 
-                    if (input.equals("H") && scene.getHint() != null) {
+                    if (input.equals("H") && scene.getHint() != null){
                         Display.printSlowly("\nHint: " + scene.getHint(), 10);
                         continue;
                     }
 
-                    for (Choice choice : choices) {
-                        if (input.equals(choice.getLabel())) {
+                    for (Choice choice : choices){
+                        if (input.equals(choice.getLabel())){
                             nextScene = choice.getNextSceneId();
                         }
                     }
 
-                    if (nextScene == null) {
+                    if (nextScene == null){
                         System.out.println("Invalid choice. Try again.");
                     }
 
-                } catch (Exception e) {
+                } catch (Exception e){
                     System.out.println("Input error: " + e.getMessage());
                 }
             }
