@@ -1,3 +1,5 @@
+import ui.Display;
+
 public class GameEngine{
 
     private Scene[] scenes;
@@ -23,6 +25,7 @@ public class GameEngine{
                 break;
             } else if (input.equals("C")) {
                 GameLogger.displayLog();
+
                 Display.ask("Press ENTER to go back...");
             } else {
                 System.out.println("Invalid choice.");

@@ -1,10 +1,12 @@
+package ui;
+
 import java.util.Scanner;
 
 public class Display {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void showMenu(){
+    public static void showMenu() {
         System.out.println("════════════════════════════════════════");
         System.out.println("           FINAL DESTINATION");
         System.out.println("════════════════════════════════════════");
@@ -15,16 +17,16 @@ public class Display {
         System.out.println();
     }
 
-    public static void showGameOver(){
+    public static void showGameOver() {
         System.out.println("\nGAME OVER");
     }
 
-    public static void clearScreen(){
+    public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    public static String ask(String prompt){
+    public static String ask(String prompt) {
         try {
             System.out.print(prompt);
             return scanner.nextLine().trim();
@@ -34,11 +36,11 @@ public class Display {
         }
     }
 
-    public static void printSlowly(String text){
+    public static void printSlowly(String text) {
         printSlowly(text, 2);
     }
 
-    public static void printSlowly(String text, int delayMs){
+    public static void printSlowly(String text, int delayMs) {
         for (char c : text.toCharArray()) {
             System.out.print(c);
             try {
