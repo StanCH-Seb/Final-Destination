@@ -1,3 +1,5 @@
+package game;
+
 public class Choice {
     private String label;
     private String text;
@@ -9,15 +11,7 @@ public class Choice {
         this.nextSceneId = nextSceneId;
     }
     
-    public String getLabel() {
-        return label;
-    }
-    
-    public String getText() {
-        return text;
-    }
-    
-    public String getNextSceneId() {
-        return nextSceneId;
-    }
+    public String getLabel() {return label;}
+    public String getText() {return text;}
+    public String getNextSceneId() {return nextSceneId;}
 }

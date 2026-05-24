@@ -1,6 +1,6 @@
-public class DeathScene extends Scene {
+public class DeathScene extends Scene{
 
-    public DeathScene(String id, String narrative) {
+    public DeathScene(String id, String narrative){
         super(id, narrative);
     }
 
@@ -10,8 +10,12 @@ public class DeathScene extends Scene {
     }
 
     @Override
-    public boolean isGameOver()  { return true; }   // ← different behaviour
+    public boolean isGameOver(){
+         return true;
+    }   
 
     @Override
-    public boolean isEnding()    { return false; }
+    public boolean isEnding(){
+         return false;
+    }
 }

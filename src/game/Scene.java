@@ -1,9 +1,11 @@
+package game;
+
 import java.util.ArrayList;
 
 // ABSTRACTION: Scene is abstract — callers work with Scene without knowing
 // whether it's a story beat, a death, or an ending.
 // INHERITANCE: StoryScene, DeathScene, EndingScene all extend this class.
-public abstract class Scene {
+public abstract class Scene extends GameObject {
 
     private String id;
     private String narrative;
@@ -23,24 +25,11 @@ public abstract class Scene {
     public abstract boolean isEnding();
 
    
-    public void addChoice(Choice choice){
-        choices.add(choice); 
-    }
-    public void setHint(String hint){ 
-        this.hint = hint; 
+    public void addChoice(Choice choice){choices.add(choice); }
+    public void setHint(String hint){ this.hint = hint; }
 
-    }
-
-    public String getId(){
-         return id; 
-        }
-    public String getNarrative(){ 
-        return narrative; 
-    }
-    public String getHint(){ 
-        return hint; 
-    }
-    public ArrayList<Choice> getChoices(){ 
-        return choices; 
-    }
+    public String getId(){return id;}
+    public String getNarrative(){ return narrative;}
+    public String getHint(){ return hint;}
+    public ArrayList<Choice> getChoices(){ return choices;}
 }

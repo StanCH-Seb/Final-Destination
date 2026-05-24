@@ -1,24 +1,21 @@
+import java.io.FileWriter;
+import java.io.File;
+import java.util.Scanner;
+
 public class GameLogger {
 
     private static final String LOG_FILE = "game_log.txt";
 
     public static void logSession(String playerName, int deathCount, String outcome) {
-
-        // No LocalDateTime / DateTimeFormatter needed
-        long now = System.currentTimeMillis();
-        String entry = "[" + now + "]"
+        String entry = "[" + System.currentTimeMillis() + "]"
                      + "  Player: " + playerName
                      + "  |  Deaths: " + deathCount
-                     + "  |  Outcome: " + outcome
-                     + System.lineSeparator();
+                     + "  |  Outcome: " + outcome;
 
         try {
-            Files.write(
-                Paths.get(LOG_FILE),
-                entry.getBytes(),
-                StandardOpenOption.CREATE,
-                StandardOpenOption.APPEND
-            );
+            FileWriter writer = new FileWriter(LOG_FILE, true);
+            writer.write(entry + "\n");
+            writer.close();
         } catch (Exception e) {
             System.out.println("Warning: could not save session — " + e.getMessage());
         }
@@ -28,14 +25,12 @@ public class GameLogger {
         System.out.println("\n════ PAST SESSIONS ════");
 
         try {
-            List<String> lines = Files.readAllLines(Paths.get(LOG_FILE));
-            if (lines.isEmpty()) {
-                System.out.println("No sessions recorded yet.");
-            } else {
-                for (String line : lines) {
-                    System.out.println(line);
-                }
+            File file = new File(LOG_FILE);
+            Scanner reader = new Scanner(file);
+            while (reader.hasNextLine()) {
+                System.out.println(reader.nextLine());
             }
+            reader.close();
         } catch (Exception e) {
             System.out.println("No session log found. Play a round first!");
         }
