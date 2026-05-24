@@ -1,7 +1,12 @@
+<<<<<<< HEAD:StoryBuilder.java
 public class StoryBuilder { 
         public static Scene[] buildScenes(String playerName) { 
         Scene[] scenes = new Scene[25]; 
         int i = 0; 
+=======
+package game;
+public class StoryBuilder {
+>>>>>>> f207274c292e5637415cae881ca2a2c34a9dda9d:src/game/StoryBuilder.java
 
         StoryScene preamble=new StoryScene("PREAMBLE", StoryLines.PREAMBLE(playerName)); 
         preamble.addChoice(new Choice("A", "Continue...", "SCENE_1")); 

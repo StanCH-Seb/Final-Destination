@@ -1,3 +1,9 @@
+<<<<<<< HEAD:GameEngine.java
+=======
+package ui.text;
+import java.util.Scanner;
+
+>>>>>>> f207274c292e5637415cae881ca2a2c34a9dda9d:src/ui/text/GameEngine.java
 public class GameEngine {
 
     private Scene[] scenes;
