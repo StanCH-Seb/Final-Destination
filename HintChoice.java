@@ -1,12 +1,10 @@
 public class HintChoice{ 
 
-    public static String getHint(String sceneId) { 
+    public static String getHint(String sceneId){ 
 
 
 
-        switch(sceneId) { 
-
-
+        switch(sceneId){ 
 
             case "SCENE_1": 
                 return "But the same path feels so eerie..."; 
@@ -15,31 +13,21 @@ public class HintChoice{
 
                 return "The dogs seem unusually aggressive..."; 
 
-
-
             case "SCENE_3": 
 
                 return "Not every stranger can be trusted."; 
-
-
 
             case "SCENE_4": 
 
                 return "Fear can cloud your judgment."; 
 
-
-
             case "SCENE_5": 
 
                 return "Rushing home might get you into a disaster."; 
 
-
-
             case "SCENE_6": 
 
                 return "The choice you make now will determine your fate."; 
-
-
 
             default: 
 
