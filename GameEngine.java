@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class GameEngine {
 
     private Scene[] scenes;
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
     
     public GameEngine(String playerName){
         scenes = StoryBuilder.buildScenes(playerName);
@@ -153,15 +153,15 @@ public class GameEngine {
     }
 
     private void printSlowly(String text){
-
         for(int i = 0; i < text.length(); i++){
             char c = text.charAt(i);
             System.out.print(c);
 
             try{
                 Thread.sleep(20);
-         }
+                }
                 catch (InterruptedException e){
+                    Thread.currentThread().interrupt();
                 }
         }
 

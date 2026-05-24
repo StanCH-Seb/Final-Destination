@@ -22,39 +22,13 @@ public class Scene {
         choices.add(choice);
     }
     
-    public void setHint(String hint) {
-        this.hint = hint;
-    }
-    
-    public void setGameOver(boolean value) {
-        this.gameOver = value;
-    }
-    
-    public void setEnding(boolean value) {
-        this.ending = value;
-    }
-    
-    public String getId() {
-        return id;
-    }
-    
-    public String getNarrative() {
-        return narrative;
-    }
-    
-    public String getHint() {
-        return hint;
-    }
-    
-    public ArrayList<Choice> getChoices() {
-        return choices;
-    }
-    
-    public boolean isGameOver() {
-        return gameOver;
-    }
-    
-    public boolean isEnding() {
-        return ending;
-    }
+    public void setHint(String hint) {this.hint = hint;}
+    public void setGameOver(boolean value) {this.gameOver = value;}
+    public void setEnding(boolean value) {this.ending = value;}
+    public String getId() {return id;}
+    public String getNarrative() {return narrative;}
+    public String getHint() {return hint;}
+    public ArrayList<Choice> getChoices() {return choices;}
+    public boolean isGameOver() {return gameOver;}
+    public boolean isEnding() {return ending;}
 }
