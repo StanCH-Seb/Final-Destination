@@ -1,20 +1,17 @@
 import java.util.ArrayList;
 
-// ABSTRACTION: Scene is abstract — callers work with Scene without knowing
-// whether it's a story beat, a death, or an ending.
-// INHERITANCE: StoryScene, DeathScene, EndingScene all extend this class.
-public abstract class Scene {
+public abstract class Scene{
 
     private String id;
     private String narrative;
     private String hint;
     private ArrayList<Choice> choices;
 
-    public Scene(String id, String narrative) {
-        this.id        = id;
+    public Scene(String id, String narrative){
+        this.id = id;
         this.narrative = narrative;
-        this.choices   = new ArrayList<>();
-        this.hint      = null;
+        this.choices = new ArrayList<>();
+        this.hint = null;
     }
 
    
@@ -28,7 +25,6 @@ public abstract class Scene {
     }
     public void setHint(String hint){ 
         this.hint = hint; 
-
     }
 
     public String getId(){
