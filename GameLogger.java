@@ -1,8 +1,6 @@
-import java.io.PrintWriter;
 import java.io.FileWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
+import java.io.File;
+import java.util.Scanner;
 
 public class GameLogger {
 
@@ -14,8 +12,10 @@ public class GameLogger {
                      + "  |  Deaths: " + deathCount
                      + "  |  Outcome: " + outcome;
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter(LOG_FILE, true))) {
-            writer.println(entry);
+        try {
+            FileWriter writer = new FileWriter(LOG_FILE, true);
+            writer.write(entry + "\n");
+            writer.close();
         } catch (Exception e) {
             System.out.println("Warning: could not save session — " + e.getMessage());
         }
@@ -25,14 +25,12 @@ public class GameLogger {
         System.out.println("\n════ PAST SESSIONS ════");
 
         try {
-            List<String> lines = Files.readAllLines(Paths.get(LOG_FILE));
-            if (lines.isEmpty()) {
-                System.out.println("No sessions recorded yet.");
-            } else {
-                for (String line : lines) {
-                    System.out.println(line);
-                }
+            File file = new File(LOG_FILE);
+            Scanner reader = new Scanner(file);
+            while (reader.hasNextLine()) {
+                System.out.println(reader.nextLine());
             }
+            reader.close();
         } catch (Exception e) {
             System.out.println("No session log found. Play a round first!");
         }
