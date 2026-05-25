@@ -1,12 +1,13 @@
 package game.logic;
 
-import java.io.FileWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class GameLogger {
 
-    private static final String LOG_FILE = "game_log.txt";
+    //private static final String LOG_FILE = "game_log.txt";
+    private static final String LOG_FILE = System.getProperty("user.dir") + "/game_log.txt";
 
     public static void logSession(String playerName, int deathCount, String outcome) {
         String entry = "[" + System.currentTimeMillis() + "]"

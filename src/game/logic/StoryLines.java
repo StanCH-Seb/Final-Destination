@@ -17,7 +17,7 @@ public class StoryLines {
         " the car they hailed got a punctured tire, and now the air-conditioning at the\n" +
         " office is not working.\n\n" +
  
-        "─────────────────────────────────────────────────────────────────────────────\n\n" +
+        "─────────────────────────────────────────────────────────────────────\n\n" +
  
         "[Alice]\n\n" +
  
